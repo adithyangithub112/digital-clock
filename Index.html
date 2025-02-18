@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+        }
+        #puzzle-container {
+            margin-top: 50px;
+        }
+        .block {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #fff;
+            color: black;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #message {
+            display: none;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Can You Untie the Blocks?</h1>
+    <div id="puzzle-container">
+        <div class="block" onclick="moveBlock(0)">3</div>
+        <div class="block" onclick="moveBlock(1)">1</div>
+        <div class="block" onclick="moveBlock(2)">2</div>
+        <div class="block" onclick="moveBlock(3)">4</div>
+    </div>
+    <p id="message">❤️ I LOVE YOU! ❤️</p>
+
+    <script>
+        function moveBlock(index) {
+            let blocks = document.querySelectorAll(".block");
+            let order = Array.from(blocks).map(block => block.innerText);
+            order.sort();
+            
+            for (let i = 0; i < blocks.length; i++) {
+                blocks[i].innerText = order[i];
+            }
+            
+            if (order.join('') === "1234") {
+                document.getElementById("message").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
